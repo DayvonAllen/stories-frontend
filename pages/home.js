@@ -35,15 +35,15 @@ const currentUser = {
 
 const navigation = [
   { name: "Home", href: "#", icon: HomeIcon, current: true },
-  { name: "Popular", href: "#", icon: FireIcon, current: false },
+  { name: "Categories", href: "#", icon: FireIcon, current: false },
   { name: "Saved Stories", href: "#", icon: UserGroupIcon, current: false },
   { name: "Forum", href: "#", icon: TrendingUpIcon, current: false },
 ];
 
 const tabs = [
-  { name: "Recent Stories", href: "#", current: true },
-  { name: "Featured Stories", href: "#", current: false },
-  { name: "Recommended Stories", href: "#", current: false },
+  { name: "All Stories", href: "/stories", current: true },
+  { name: "Featured Stories", href: "/featured", current: false },
+  { name: "Recent Stories", href: "/recent", current: false },
 ];
 
 const questions = [
@@ -97,7 +97,7 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function Home() {
+export default function Home({ stories }) {
   const router = useRouter();
   const { logout, user, error } = useContext(AuthContext);
 
@@ -386,7 +386,7 @@ export default function Home() {
             <div className="mt-4">
               <h1 className="sr-only">Recent questions</h1>
               <ul className="space-y-4">
-                {questions.map((question) => (
+                {stories.map((question) => (
                   <li
                     key={question.id}
                     className="bg-white px-4 py-6 shadow sm:p-6 sm:rounded-lg"
@@ -394,29 +394,29 @@ export default function Home() {
                     <article aria-labelledby={"question-title-" + question.id}>
                       <div>
                         <div className="flex space-x-3">
-                          <div className="flex-shrink-0">
+                          {/* <div className="flex-shrink-0">
                             <img
                               className="h-10 w-10 rounded-full"
                               src={question.author.imageUrl}
                               alt=""
                             />
-                          </div>
+                          </div> */}
                           <div className="min-w-0 flex-1">
                             <p className="text-sm font-medium text-gray-900">
                               <a
-                                href={question.author.href}
+                                // href={question.author.href}
                                 className="hover:underline"
                               >
-                                {question.author.name}
+                                {question.authorUsername}
                               </a>
                             </p>
                             <p className="text-sm text-gray-500">
                               <a
-                                href={question.href}
+                                // href={question.href}
                                 className="hover:underline"
                               >
-                                <time dateTime={question.datetime}>
-                                  {question.date}
+                                <time dateTime={question.createdAt}>
+                                  {question.createdAt}
                                 </time>
                               </a>
                             </p>
@@ -529,7 +529,7 @@ export default function Home() {
                       </div>
                       <div
                         className="mt-2 text-sm text-gray-700 space-y-4"
-                        dangerouslySetInnerHTML={{ __html: question.body }}
+                        dangerouslySetInnerHTML={{ __html: question.preview }}
                       />
                       <div className="mt-6 flex justify-between space-x-8">
                         <div className="flex space-x-6">
@@ -552,16 +552,16 @@ export default function Home() {
                                 aria-hidden="true"
                               />
                               <span className="font-medium text-gray-900">
-                                {question.replies}
+                                {question.commentCount}
                               </span>
-                              <span className="sr-only">replies</span>
+                              <span className="sr-only">Comments</span>
                             </button>
                           </span>
                           <span className="inline-flex items-center text-sm">
                             <button className="inline-flex space-x-2 text-gray-400 hover:text-gray-500">
                               <EyeIcon className="h-5 w-5" aria-hidden="true" />
                               <span className="font-medium text-gray-900">
-                                {question.views}
+                                {/* {question.views} */}1
                               </span>
                               <span className="sr-only">views</span>
                             </button>
@@ -647,7 +647,7 @@ export default function Home() {
                   </div>
                 </div>
               </section>
-              <section aria-labelledby="trending-heading">
+              {/* <section aria-labelledby="trending-heading">
                 <div className="bg-white rounded-lg shadow">
                   <div className="p-6">
                     <h2
@@ -669,7 +669,7 @@ export default function Home() {
                             </div>
                             <div className="min-w-0 flex-1">
                               <p className="text-sm text-gray-800">
-                                {post.body}
+                                {post.preview}
                               </p>
                               <div className="mt-2 flex">
                                 <span className="inline-flex items-center text-sm">
@@ -679,7 +679,7 @@ export default function Home() {
                                       aria-hidden="true"
                                     />
                                     <span className="font-medium text-gray-900">
-                                      {post.comments}
+                                      {post.commentCount}
                                     </span>
                                   </button>
                                 </span>
@@ -699,7 +699,7 @@ export default function Home() {
                     </div>
                   </div>
                 </div>
-              </section>
+              </section> */}
             </div>
           </aside>
         </div>
@@ -721,7 +721,7 @@ export async function getServerSideProps({ req }) {
   console.log(data);
   return {
     props: {
-      stories: data?.data,
+      stories: data?.data?.stories,
     },
   };
 }

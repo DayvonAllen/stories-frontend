@@ -142,6 +142,10 @@ export default function LandingPage({ stories }) {
     }
   };
 
+  useEffect(() => {
+    setError(null);
+  }, []);
+
   return (
     <>
       <div className="relative bg-gray-800 overflow-hidden">
@@ -233,9 +237,7 @@ export default function LandingPage({ stories }) {
                   <div>
                     <h1 className="mt-4 text-4xl tracking-tight font-extrabold text-white sm:mt-5 sm:leading-none lg:mt-6 lg:text-5xl xl:text-6xl">
                       <span className="md:block">Read Awesome </span>{" "}
-                      <span className="text-green-500 md:block">
-                        Scary Stories
-                      </span>
+                      <span className="text-green-500 md:block">Stories</span>
                     </h1>
                     <p className="mt-3 text-base text-gray-300 sm:mt-5 sm:text-xl lg:text-lg xl:text-xl">
                       Anim aute id magna aliqua ad ad non deserunt sunt. Qui
@@ -256,7 +258,7 @@ export default function LandingPage({ stories }) {
                         </div>
                         <div className="relative flex justify-center text-sm">
                           <span className="px-2 bg-white text-gray-500">
-                            Create Account
+                            Create An Account
                           </span>
                         </div>
                       </div>
@@ -395,7 +397,7 @@ export default function LandingPage({ stories }) {
                   <p className="text-xl font-semibold text-gray-900">
                     {post.title}
                   </p>
-                  <p className="mt-3 text-base text-gray-500">{post.content}</p>
+                  <p className="mt-3 text-base text-gray-500">{post.preview}</p>
                 </a>
                 <div className="mt-6 flex items-center">
                   <div className="flex-shrink-0">
@@ -416,7 +418,12 @@ export default function LandingPage({ stories }) {
                       <time dateTime={post.createdDate}>
                         {post.createdDate}
                       </time>
-                      <span aria-hidden="true">&middot; Read More</span>
+                      <span aria-hidden="true">
+                        &middot;{" "}
+                        <Link href="/login">
+                          <a className="hover:text-gray-700">Read More</a>
+                        </Link>
+                      </span>
                     </div>
                   </div>
                 </div>

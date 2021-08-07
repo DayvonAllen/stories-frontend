@@ -1,6 +1,6 @@
 import AuthContext from "context/AuthContext";
 import Link from "next/link";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 export default function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -26,6 +26,10 @@ export default function Login() {
       setError(null);
     }
   };
+
+  useEffect(() => {
+    setError(null);
+  }, []);
 
   return (
     <div className="min-h-screen bg-white flex">
