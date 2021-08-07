@@ -306,7 +306,7 @@ export default function LandingPage({ stories }) {
                             />
                           </div>
 
-                          <div>
+                          <div className="text-center">
                             <button
                               type="submit"
                               onClick={registerUser}
@@ -314,7 +314,7 @@ export default function LandingPage({ stories }) {
                             >
                               Create your account
                             </button>
-                            {error}
+                            <p className="text-red-500 mt-2">{error}</p>
                           </div>
                         </form>
                       </div>
