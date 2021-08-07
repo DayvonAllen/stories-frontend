@@ -125,14 +125,21 @@ export default function LandingPage({ stories }) {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { register, error } = useContext(AuthContext);
+  const { register, error, setError } = useContext(AuthContext);
   const [featuredStories, setFeaturedStories] = useState(stories);
 
   const registerUser = async (event) => {
     event.preventDefault();
     register({ username, email, password });
+    setUsername("");
+    setPassword("");
+    setEmail("");
+  };
 
-    console.log(error);
+  const inputFocus = () => {
+    if (error !== null) {
+      setError(null);
+    }
   };
 
   return (
@@ -268,6 +275,7 @@ export default function LandingPage({ stories }) {
                               required
                               value={username}
                               onChange={(e) => setUsername(e.target.value)}
+                              onFocus={inputFocus}
                               className="block w-full shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm border-gray-300 rounded-md"
                             />
                           </div>
@@ -285,6 +293,7 @@ export default function LandingPage({ stories }) {
                               required
                               value={email}
                               onChange={(e) => setEmail(e.target.value)}
+                              onFocus={inputFocus}
                               className="block w-full shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm border-gray-300 rounded-md"
                             />
                           </div>
@@ -302,6 +311,7 @@ export default function LandingPage({ stories }) {
                               required
                               value={password}
                               onChange={(e) => setPassword(e.target.value)}
+                              onFocus={inputFocus}
                               className="block w-full shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm border-gray-300 rounded-md"
                             />
                           </div>

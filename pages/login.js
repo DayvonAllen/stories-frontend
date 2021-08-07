@@ -4,11 +4,27 @@ import { useContext, useState } from "react";
 export default function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const { login, error } = useContext(AuthContext);
+  const { login, error, setError } = useContext(AuthContext);
 
   const onSubmit = async (event) => {
     event.preventDefault();
     login({ username, password });
+    setUsername("");
+    setPassword("");
+  };
+
+  const onUsernameInput = (e) => {
+    setUsername(e.target.value);
+  };
+
+  const onPasswordInput = (e) => {
+    setPassword(e.target.value);
+  };
+
+  const inputFocus = () => {
+    if (error !== null) {
+      setError(null);
+    }
   };
 
   return (
@@ -32,7 +48,8 @@ export default function Login() {
                       type="text"
                       required
                       value={username}
-                      onChange={(e) => setUsername(e.target.value)}
+                      onChange={onUsernameInput}
+                      onFocus={inputFocus}
                       className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm"
                     />
                   </div>
@@ -53,7 +70,8 @@ export default function Login() {
                       autoComplete="current-password"
                       required
                       value={password}
-                      onChange={(e) => setPassword(e.target.value)}
+                      onChange={onPasswordInput}
+                      onFocus={inputFocus}
                       className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm"
                     />
                   </div>
@@ -70,7 +88,7 @@ export default function Login() {
                   </div>
                 </div>
 
-                <div>
+                <div className="text-center">
                   <button
                     type="submit"
                     onClick={onSubmit}
@@ -79,6 +97,7 @@ export default function Login() {
                     Sign in
                   </button>
                 </div>
+                <p className="mt-4 text-red-500 text-center">{error}</p>
               </form>
               <div className="flex items-center mt-6 border-t">
                 <div className="text-sm text-center flex-1 pt-4">
