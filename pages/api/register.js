@@ -15,7 +15,7 @@ export default async (req, res) => {
       }),
     });
 
-    const data = await backendRes.json();
+    await backendRes.json();
 
     if (backendRes.ok) {
       res.status(200).json({ user: "ok" });

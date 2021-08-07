@@ -14,7 +14,6 @@ export const AuthProvider = ({ children }) => {
       checkUserLoggedIn();
   }, []);
 
-  // Register user
   const register = async ({ username, email, password }) => {
     const res = await fetch(`/api/register`, {
       method: "POST",
@@ -34,7 +33,6 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  // Login user
   const login = async ({ username, password }) => {
     const res = await fetch(`/api/login`, {
       method: "POST",
@@ -58,7 +56,6 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  // Logout user
   const logout = async () => {
     const res = await fetch(`/api/logout`, {
       method: "GET",
@@ -70,7 +67,6 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  // Check if user is logged in
   const checkUserLoggedIn = async (user) => {
     const res = await fetch(`/api/isLoggedIn`);
     const data = await res.json();
