@@ -247,18 +247,29 @@ export default function LandingPage({ stories }) {
                       <div className="mt-6">
                         <form className="space-y-6">
                           <div>
-                            <label
-                              htmlFor="mobile-or-email"
-                              className="sr-only"
-                            >
-                              Username or email
+                            <label htmlFor="username" className="sr-only">
+                              Username
                             </label>
                             <input
                               type="text"
-                              name="username-or-email"
-                              id="username-or-email"
+                              name="username"
+                              id="username"
+                              placeholder="Username"
+                              required
+                              className="block w-full shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm border-gray-300 rounded-md"
+                            />
+                          </div>
+
+                          <div>
+                            <label htmlFor="email" className="sr-only">
+                              Email
+                            </label>
+                            <input
+                              type="email"
+                              name="email"
+                              id="email"
                               autoComplete="email"
-                              placeholder="Username or email"
+                              placeholder="Email"
                               required
                               className="block w-full shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm border-gray-300 rounded-md"
                             />
