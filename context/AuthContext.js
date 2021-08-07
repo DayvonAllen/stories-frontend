@@ -1,6 +1,5 @@
 import { createContext, useState, useEffect } from "react";
 import { useRouter } from "next/router";
-import { API_URL } from "@/config/index";
 
 const AuthContext = createContext();
 
@@ -11,12 +10,13 @@ export const AuthProvider = ({ children }) => {
   const router = useRouter();
 
   useEffect(() => {
-    if (router.pathname !== "/") checkUserLoggedIn();
+    if (router.pathname !== "/" && router.pathname !== "/login")
+      checkUserLoggedIn();
   }, []);
 
   // Register user
   const register = async (user) => {
-    const res = await fetch(`${API_URL}/api/register`, {
+    const res = await fetch(`/api/register`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

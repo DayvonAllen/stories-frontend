@@ -3,8 +3,6 @@ import cookie from "cookie";
 
 export default async (req, res) => {
   if (req.method === "GET") {
-    console.log(req.headers);
-
     // Destroy cookie
     const backendRes = await fetch(`${API_URL}/auth/logout`);
 
