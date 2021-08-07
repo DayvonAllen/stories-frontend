@@ -30,6 +30,7 @@ const currentUser = {
   imageUrl:
     "https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
 };
+
 const navigation = [
   { name: "Home", href: "#", icon: HomeIcon, current: true },
   { name: "Popular", href: "#", icon: FireIcon, current: false },
@@ -42,6 +43,7 @@ const tabs = [
   { name: "Featured Stories", href: "#", current: false },
   { name: "Recommended Stories", href: "#", current: false },
 ];
+
 const questions = [
   {
     id: "81614",
@@ -96,6 +98,7 @@ function classNames(...classes) {
 export default function Home() {
   const router = useRouter();
   const { logout, user, error } = useContext(AuthContext);
+
   const userNavigation = [
     { name: "Your Profile", href: "#", callback: undefined },
     { name: "Settings", href: "#", callback: undefined },

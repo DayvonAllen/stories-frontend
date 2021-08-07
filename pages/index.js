@@ -3,7 +3,7 @@ import { Popover, Transition } from "@headlessui/react";
 import { MenuIcon, XIcon } from "@heroicons/react/outline";
 import Link from "next/link";
 import AuthContext from "context/AuthContext";
-import { APP_URL } from "../config/index";
+import { API_URL } from "../config/index";
 
 const navigationFooter = {
   main: [
@@ -498,9 +498,8 @@ export default function LandingPage({ stories }) {
 }
 
 export async function getStaticProps() {
-  const res = await fetch(`${APP_URL}/api/featuredStories`);
-  const { data } = await res.json();
-  console.log(data?.data);
+  const res = await fetch(`${API_URL}/stories/featured`);
+  const data = await res.json();
   return {
     props: {
       stories: data?.data,
