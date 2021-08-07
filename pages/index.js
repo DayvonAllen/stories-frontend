@@ -131,6 +131,8 @@ export default function LandingPage({ stories }) {
   const registerUser = async (event) => {
     event.preventDefault();
     register({ username, email, password });
+
+    console.log(error);
   };
 
   return (
@@ -312,6 +314,7 @@ export default function LandingPage({ stories }) {
                             >
                               Create your account
                             </button>
+                            {error}
                           </div>
                         </form>
                       </div>

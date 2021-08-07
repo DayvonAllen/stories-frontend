@@ -19,6 +19,10 @@ export default async (req, res) => {
 
     if (backendRes.ok) {
       res.status(200).json({ user: "ok" });
+    } else if (backendRes.status === 409) {
+      res
+        .status(409)
+        .json({ message: "A user with that email or username already exists" });
     } else {
       res.status(400).json({ message: "Bad Data" });
     }

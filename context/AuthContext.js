@@ -27,10 +27,10 @@ export const AuthProvider = ({ children }) => {
     const data = await res.json();
 
     if (res.ok) {
+      setError(null);
       router.push("/login");
     } else {
       setError(data.message);
-      setError(null);
     }
   };
 
