@@ -15,19 +15,18 @@ export const AuthProvider = ({ children }) => {
   }, []);
 
   // Register user
-  const register = async (user) => {
+  const register = async ({ username, email, password }) => {
     const res = await fetch(`/api/register`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(user),
+      body: JSON.stringify({ username, email, password }),
     });
 
     const data = await res.json();
 
     if (res.ok) {
-      setUser(data.user);
       router.push("/login");
     } else {
       setError(data.message);

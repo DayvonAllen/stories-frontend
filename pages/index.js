@@ -122,8 +122,16 @@ function classNames(...classes) {
 }
 
 export default function LandingPage({ stories }) {
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const { register, error } = useContext(AuthContext);
   const [featuredStories, setFeaturedStories] = useState(stories);
+
+  const registerUser = async (event) => {
+    event.preventDefault();
+    register({ username, email, password });
+  };
 
   return (
     <>
@@ -256,6 +264,8 @@ export default function LandingPage({ stories }) {
                               id="username"
                               placeholder="Username"
                               required
+                              value={username}
+                              onChange={(e) => setUsername(e.target.value)}
                               className="block w-full shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm border-gray-300 rounded-md"
                             />
                           </div>
@@ -271,6 +281,8 @@ export default function LandingPage({ stories }) {
                               autoComplete="email"
                               placeholder="Email"
                               required
+                              value={email}
+                              onChange={(e) => setEmail(e.target.value)}
                               className="block w-full shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm border-gray-300 rounded-md"
                             />
                           </div>
@@ -286,6 +298,8 @@ export default function LandingPage({ stories }) {
                               placeholder="Password"
                               autoComplete="current-password"
                               required
+                              value={password}
+                              onChange={(e) => setPassword(e.target.value)}
                               className="block w-full shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm border-gray-300 rounded-md"
                             />
                           </div>
@@ -293,6 +307,7 @@ export default function LandingPage({ stories }) {
                           <div>
                             <button
                               type="submit"
+                              onClick={registerUser}
                               className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
                             >
                               Create your account
