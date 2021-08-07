@@ -50,11 +50,11 @@ export const AuthProvider = ({ children }) => {
     const data = await res.json();
 
     if (res.ok) {
+      setError(null);
       setUser(data.user);
       router.push("/home");
     } else {
       setError(data.message);
-      setError(null);
     }
   };
 

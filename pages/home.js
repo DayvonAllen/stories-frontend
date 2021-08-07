@@ -1,5 +1,6 @@
 import { Fragment, useContext, useEffect } from "react";
 import { Menu, Popover, Transition } from "@headlessui/react";
+import cookie from "cookie";
 import {
   ChatAltIcon,
   CodeIcon,
@@ -23,6 +24,7 @@ import {
 } from "@heroicons/react/outline";
 import { useRouter } from "next/router";
 import AuthContext from "context/AuthContext";
+import { API_URL } from "../config/index";
 
 const currentUser = {
   name: "Chelsea Hagon",
@@ -704,4 +706,22 @@ export default function Home() {
       </div>
     </div>
   ) : null;
+}
+
+export async function getServerSideProps({ req }) {
+  const { token } = cookie.parse(req.headers.cookie);
+  console.log(req);
+  const res = await fetch(`${API_URL}/stories`, {
+    headers: {
+      Authorization: token,
+    },
+  });
+  const data = await res.json();
+
+  console.log(data);
+  return {
+    props: {
+      stories: data?.data,
+    },
+  };
 }

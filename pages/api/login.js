@@ -18,6 +18,7 @@ export default async (req, res) => {
     const data = await backendRes.json();
 
     if (backendRes.ok) {
+      console.log(backendRes.headers.get("cookie"));
       //   Set Cookie
       res.setHeader(
         "Set-Cookie",
