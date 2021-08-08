@@ -71,7 +71,7 @@ class Write extends Component {
             <TextEditor handleContent={this.handleEditorContent} />
           </div>
         </div>
-        <div className="md:w-1/2 mx-auto w-full">
+        <div className="md:w-1/2 mx-auto w-full pb-4">
           <button
             type="button"
             onClick={this.submitForm}
