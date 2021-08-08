@@ -53,7 +53,7 @@ class Write extends Component {
   };
 
   render() {
-    return (
+    return this.props.user ? (
       <div className="w-full text-center z-1">
         <div className="lg:w-1/2 mx-auto  w-full">
           <div className="mb-4 pt-6 w-1/2 mx-auto">
@@ -78,7 +78,7 @@ class Write extends Component {
           </button>
         </div>
       </div>
-    );
+    ) : null;
   }
 }
 export default withRouter(Write);

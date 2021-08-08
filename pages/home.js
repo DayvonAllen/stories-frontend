@@ -17,7 +17,6 @@ import {
   ArchiveIcon,
   CollectionIcon,
 } from "@heroicons/react/outline";
-import AuthContext from "context/AuthContext";
 import { API_URL } from "../config/index";
 import DOMPurify from "dompurify";
 
@@ -47,9 +46,7 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function Home({ stories }) {
-  const { user } = useContext(AuthContext);
-
+export default function Home({ stories, user }) {
   return user ? (
     <div className="relative min-h-screen bg-gray-100">
       {/* When the mobile menu is open, add `overflow-hidden` to the `body` element to prevent double scrollbars */}
@@ -398,7 +395,7 @@ export default function Home({ stories }) {
 }
 
 export async function getServerSideProps({ req }) {
-  const { token } = cookie.parse(req.headers.cookie);
+  const { token } = cookie.parse(req?.headers?.cookie || "");
   const res = await fetch(`${API_URL}/stories`, {
     headers: {
       Authorization: token,
@@ -409,7 +406,7 @@ export async function getServerSideProps({ req }) {
   console.log(data);
   return {
     props: {
-      stories: data?.data?.stories,
+      stories: data?.data?.stories || [],
     },
   };
 }

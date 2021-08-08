@@ -1,10 +1,13 @@
+import AuthContext from "context/AuthContext";
 import Head from "next/head";
 import { useRouter } from "next/router";
+import React, { useContext } from "react";
 import Footer from "./Footer";
 import Navbar from "./Navbar";
 export default function Layout({ title, keywords, description, children }) {
   const router = useRouter();
-  console.log(router.pathname);
+  const { user, logout } = useContext(AuthContext);
+
   return (
     <div className="w-screen">
       <Head>
@@ -13,10 +16,10 @@ export default function Layout({ title, keywords, description, children }) {
         <meta name="keywords" content={keywords} />
       </Head>
       {router.pathname !== "/" && !router.pathname.includes("/login") && (
-        <Navbar />
+        <Navbar user={user} logout={logout} />
       )}
       <div className="relative min-h-screen bg-gray-100 ">
-        {children}
+        {React.cloneElement(children, { user })}
         {router.pathname === "/" && <Footer />}
       </div>
     </div>

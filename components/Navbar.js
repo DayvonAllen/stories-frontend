@@ -29,17 +29,15 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function Navbar() {
-  const { logout, user } = useContext(AuthContext);
-
+export default function Navbar({ user, logout }) {
   const userNavigation = [
     { name: "Home", href: "/home", callback: undefined },
     { name: "Your Profile", href: "#", callback: undefined },
     { name: "Settings", href: "#", callback: undefined },
-    { name: "Sign out", href: "#", callback: logout },
+    { name: "Sign out", href: "/home", callback: logout },
   ];
 
-  return (
+  return user ? (
     <>
       <Popover
         as="header"
@@ -229,5 +227,5 @@ export default function Navbar() {
         )}
       </Popover>
     </>
-  );
+  ) : null;
 }
