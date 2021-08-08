@@ -137,16 +137,17 @@ export default function Navbar({ user, logout }) {
                             {userNavigation.map((item) => (
                               <Menu.Item key={item.name}>
                                 {({ active }) => (
-                                  <a
-                                    href={item.href}
-                                    className={classNames(
-                                      active ? "bg-green-500" : "",
-                                      "block py-2 px-4 text-sm text-white"
-                                    )}
-                                    onClick={item?.callback}
-                                  >
-                                    {item.name}
-                                  </a>
+                                  <Link href={item.href}>
+                                    <a
+                                      className={classNames(
+                                        active ? "bg-green-500" : "",
+                                        "block py-2 px-4 text-sm text-white"
+                                      )}
+                                      onClick={item?.callback}
+                                    >
+                                      {item.name}
+                                    </a>
+                                  </Link>
                                 )}
                               </Menu.Item>
                             ))}
@@ -168,19 +169,22 @@ export default function Navbar({ user, logout }) {
             <Popover.Panel as="nav" className="lg:hidden" aria-label="Global">
               <div className="max-w-3xl mx-auto px-2 pt-2 pb-3 space-y-1 sm:px-4">
                 {navigation.map((item) => (
-                  <a
+                  <Link
                     key={item.name}
                     href={item.href}
                     aria-current={item.current ? "page" : undefined}
-                    className={classNames(
-                      item.current
-                        ? "bg-green-500 text-white"
-                        : "hover:bg-green-700",
-                      "block rounded-md py-2 px-3 text-base text-white font-medium"
-                    )}
                   >
-                    {item.name}
-                  </a>
+                    <a
+                      className={classNames(
+                        item.current
+                          ? "bg-green-500 text-white"
+                          : "hover:bg-green-700",
+                        "block rounded-md py-2 px-3 text-base text-white font-medium"
+                      )}
+                    >
+                      {item.name}
+                    </a>
+                  </Link>
                 ))}
               </div>
               <div className="border-t border-gray-200 pt-4 pb-3">
@@ -210,14 +214,15 @@ export default function Navbar({ user, logout }) {
                 </div>
                 <div className="mt-3 max-w-3xl mx-auto px-2 space-y-1 sm:px-4">
                   {userNavigation.map((item) => (
-                    <a
+                    <Link
                       key={item.name}
                       href={item.href}
                       onClick={item?.callback}
-                      className="block rounded-md py-2 px-3 text-base font-medium text-white hover:bg-gray-50 hover:text-gray-900"
                     >
-                      {item.name}
-                    </a>
+                      <a className="block rounded-md py-2 px-3 text-base font-medium text-white hover:bg-gray-50 hover:text-gray-900">
+                        {item.name}
+                      </a>
+                    </Link>
                   ))}
                 </div>
               </div>
