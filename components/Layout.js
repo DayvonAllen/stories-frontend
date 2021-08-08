@@ -1,5 +1,6 @@
 import Head from "next/head";
 import { useRouter } from "next/router";
+import Footer from "./Footer";
 import Navbar from "./Navbar";
 export default function Layout({ title, keywords, description, children }) {
   const router = useRouter();
@@ -13,7 +14,10 @@ export default function Layout({ title, keywords, description, children }) {
       {router.pathname !== "/" && !router.pathname.includes("/login") && (
         <Navbar />
       )}
-      <div className="relative min-h-screen bg-gray-100">{children}</div>
+      <div className="relative min-h-screen bg-gray-100">
+        {children}
+        <Footer />
+      </div>
     </div>
   );
 }

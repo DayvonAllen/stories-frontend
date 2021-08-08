@@ -1,6 +1,6 @@
-import { Fragment, useContext, useEffect } from "react";
+import { Fragment, useContext } from "react";
 import moment from "moment";
-import { Menu, Popover, Transition } from "@headlessui/react";
+import { Menu, Transition } from "@headlessui/react";
 import cookie from "cookie";
 import {
   ChatAltIcon,
@@ -8,29 +8,18 @@ import {
   EyeIcon,
   FlagIcon,
   PlusIcon,
-  SearchIcon,
   ShareIcon,
   StarIcon,
   ThumbUpIcon,
 } from "@heroicons/react/solid";
 import {
-  BellIcon,
   HomeIcon,
-  MenuIcon,
   ArchiveIcon,
   CollectionIcon,
-  XIcon,
 } from "@heroicons/react/outline";
 import { useRouter } from "next/router";
 import AuthContext from "context/AuthContext";
 import { API_URL } from "../config/index";
-
-const currentUser = {
-  name: "Chelsea Hagon",
-  email: "chelseahagon@example.com",
-  imageUrl:
-    "https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
-};
 
 const navigation = [
   { name: "Home", href: "#", icon: HomeIcon, current: true },
@@ -59,14 +48,7 @@ function classNames(...classes) {
 }
 
 export default function Home({ stories }) {
-  const router = useRouter();
   const { logout, user } = useContext(AuthContext);
-
-  const userNavigation = [
-    { name: "Your Profile", href: "#", callback: undefined },
-    { name: "Settings", href: "#", callback: undefined },
-    { name: "Sign out", href: "#", callback: logout },
-  ];
 
   return user ? (
     <div className="relative min-h-screen bg-gray-100">
