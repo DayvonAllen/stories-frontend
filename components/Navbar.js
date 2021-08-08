@@ -44,7 +44,7 @@ export default function Navbar() {
         className={({ open }) =>
           classNames(
             open ? "fixed inset-0 z-40 overflow-y-auto" : "",
-            "bg-gray-800 shadow-sm lg:static lg:overflow-y-visible"
+            "bg-gray-800 shadow-sm lg:static lg:overflow-y-visible z-50"
           )
         }
       >

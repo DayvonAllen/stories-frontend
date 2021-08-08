@@ -43,14 +43,29 @@ class Write extends Component {
     console.log(title);
     console.log(body);
 
+    const res = await fetch(`/api/createStory`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        title,
+        content: body,
+      }),
+    });
+
+    const data = await res.json();
+
+    console.log(data);
+
     // this.props.router.push(`/articles/${article.slug}`);
   };
 
   render() {
     return (
-      <div className="w-full text-center ">
+      <div className="w-full text-center z-1">
         <div className="lg:w-1/2 mx-auto  w-full">
-          <div className="mb-4 pt-6">
+          <div className="mb-4 pt-6 w-1/2 mx-auto">
             <input
               name="title"
               className="w-full border-none rounded-lg"
@@ -65,15 +80,12 @@ class Write extends Component {
           </div>
           <button
             type="button"
+            onClick={this.submitForm}
             className="w-1/2 text-center mt-4 inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
           >
             <p className="text-center w-full">Post Story</p>
           </button>
         </div>
-
-        {/* <div className="bg-white ">
-          <TextEditor handleContent={this.handleEditorContent} />
-        </div> */}
       </div>
     );
   }
