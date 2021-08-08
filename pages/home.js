@@ -17,9 +17,9 @@ import {
   ArchiveIcon,
   CollectionIcon,
 } from "@heroicons/react/outline";
-import { useRouter } from "next/router";
 import AuthContext from "context/AuthContext";
 import { API_URL } from "../config/index";
+import DOMPurify from "dompurify";
 
 const navigation = [
   { name: "Home", href: "#", icon: HomeIcon, current: true },
@@ -48,7 +48,7 @@ function classNames(...classes) {
 }
 
 export default function Home({ stories }) {
-  const { logout, user } = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
 
   return user ? (
     <div className="relative min-h-screen bg-gray-100">
@@ -269,7 +269,9 @@ export default function Home({ stories }) {
                       </div>
                       <div
                         className="mt-2 text-sm text-gray-700 space-y-4"
-                        dangerouslySetInnerHTML={{ __html: question.preview }}
+                        dangerouslySetInnerHTML={{
+                          __html: DOMPurify.sanitize(question.preview),
+                        }}
                       />
                       <div className="mt-6 flex justify-between space-x-8">
                         <div className="flex space-x-6">

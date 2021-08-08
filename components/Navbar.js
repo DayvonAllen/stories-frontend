@@ -10,6 +10,7 @@ import {
   XIcon,
 } from "@heroicons/react/outline";
 import AuthContext from "context/AuthContext";
+import Link from "next/link";
 
 const currentUser = {
   name: "Chelsea Hagon",
@@ -32,6 +33,7 @@ export default function Navbar() {
   const { logout, user } = useContext(AuthContext);
 
   const userNavigation = [
+    { name: "Home", href: "/home", callback: undefined },
     { name: "Your Profile", href: "#", callback: undefined },
     { name: "Settings", href: "#", callback: undefined },
     { name: "Sign out", href: "#", callback: logout },
@@ -157,12 +159,11 @@ export default function Navbar() {
                     )}
                   </Menu>
 
-                  <a
-                    href="#"
-                    className="ml-6 inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
-                  >
-                    New Post
-                  </a>
+                  <Link href="/create">
+                    <a className="ml-6 inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
+                      New Post
+                    </a>
+                  </Link>
                 </div>
               </div>
             </div>

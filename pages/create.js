@@ -1,6 +1,6 @@
 import TextEditor from "@/components/TextEditor";
 import React, { Component } from "react";
-import { withRouter } from "next/router";
+import router, { withRouter } from "next/router";
 import draftToHtml from "draftjs-to-html";
 import DOMPurify from "dompurify";
 
@@ -32,16 +32,9 @@ class Write extends Component {
 
   submitForm = async (event) => {
     event.preventDefault();
-    // let article = await apiClient.saveArticle({
-    //   title: this.state.title,
-    //   body: JSON.stringify(this.state.body)
-    // })
     let body = draftToHtml(this.state.body);
     let title = DOMPurify.sanitize(this.state.title);
     body = DOMPurify.sanitize(body);
-
-    console.log(title);
-    console.log(body);
 
     const res = await fetch(`/api/createStory`, {
       method: "POST",
@@ -54,11 +47,9 @@ class Write extends Component {
       }),
     });
 
-    const data = await res.json();
+    await res.json();
 
-    console.log(data);
-
-    // this.props.router.push(`/articles/${article.slug}`);
+    router.push("/home");
   };
 
   render() {

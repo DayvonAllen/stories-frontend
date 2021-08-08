@@ -6,8 +6,6 @@ export default async (req, res) => {
 
     const { token } = cookie.parse(req.headers.cookie);
 
-    console.log(token);
-
     const backendRes = await fetch(`${API_URL}/stories`, {
       method: "POST",
       headers: {
