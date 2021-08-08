@@ -28,11 +28,10 @@ export default class TextEditor extends Component {
     const { editorState } = this.state;
     return (
       <Editor
-        className="h-screen"
         editorState={editorState}
         toolbarClassName="inline"
-        wrapperClassName="min-h-64"
-        editorClassName="min-h-64"
+        wrapperClassName="min-h-screen"
+        editorClassName="min-h-screen"
         onEditorStateChange={this.onEditorStateChange}
         // toolbarOnFocus
         toolbar={{
@@ -40,14 +39,12 @@ export default class TextEditor extends Component {
             "inline",
             "blockType",
             "fontSize",
-            "fontFamily",
-            "list",
             "textAlign",
             "colorPicker",
-            "link",
-            "embedded",
+            // "link",
+            // "embedded",
             "emoji",
-            "history",
+            // "history",
           ],
           inline: { inDropdown: true },
           list: { inDropdown: true },

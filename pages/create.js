@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import router, { withRouter } from "next/router";
 import draftToHtml from "draftjs-to-html";
 import DOMPurify from "dompurify";
+import { APP_URL } from "../config";
 
 class Write extends Component {
   constructor(props) {
@@ -36,7 +37,7 @@ class Write extends Component {
     let title = DOMPurify.sanitize(this.state.title);
     body = DOMPurify.sanitize(body);
 
-    const res = await fetch(`/api/createStory`, {
+    const res = await fetch(`${APP_URL}/api/createStory`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -54,12 +55,12 @@ class Write extends Component {
 
   render() {
     return this.props.user ? (
-      <div className="w-full text-center z-1">
-        <div className="lg:w-1/2 mx-auto  w-full">
+      <div className="w-full text-center z-1 md:pt-6">
+        <div className="lg:w-1/2 mx-auto  w-full bg-white shadow">
           <div className="mb-4 pt-6 w-1/2 mx-auto">
             <input
               name="title"
-              className="w-full border-none rounded-lg"
+              className="w-full border border-green-600 rounded-lg"
               onChange={this.handleInputs}
               placeholder="Title..."
               type="text"
@@ -69,6 +70,8 @@ class Write extends Component {
           <div className="mt-4 sm:mt-0 sm:col-span-2 bg-white">
             <TextEditor handleContent={this.handleEditorContent} />
           </div>
+        </div>
+        <div className="md:w-1/2 mx-auto w-full">
           <button
             type="button"
             onClick={this.submitForm}

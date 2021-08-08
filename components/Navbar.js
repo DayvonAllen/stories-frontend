@@ -1,4 +1,4 @@
-import { Fragment, useContext } from "react";
+import { Fragment } from "react";
 import { Menu, Popover, Transition } from "@headlessui/react";
 import { SearchIcon } from "@heroicons/react/solid";
 import {
@@ -9,7 +9,6 @@ import {
   CollectionIcon,
   XIcon,
 } from "@heroicons/react/outline";
-import AuthContext from "context/AuthContext";
 import Link from "next/link";
 
 const currentUser = {
