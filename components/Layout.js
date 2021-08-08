@@ -1,27 +1,25 @@
 import Head from "next/head";
-export default function Layout({
-    title,
-    keywords,
-    description,
-    children,
-    categories,
-  }) {
-  
-    return (
-      <div className={`flex flex-col min-h-screen h-screen"`}>
-        <Head>
-          <title>{title}</title>
-          <meta name="description" content={description} />
-          <meta name="keywords" content={keywords} />
-        </Head>
-      </div>
-    );
-  }
-  
-  Layout.defaultProps = {
-    title: "",
-    description:
-      "",
-    keywords: ``,
-  };
-  
+import { useRouter } from "next/router";
+import Navbar from "./Navbar";
+export default function Layout({ title, keywords, description, children }) {
+  const router = useRouter();
+  return (
+    <div className="">
+      <Head>
+        <title>{title}</title>
+        <meta name="description" content={description} />
+        <meta name="keywords" content={keywords} />
+      </Head>
+      {router.pathname !== "/" && !router.pathname.includes("/login") && (
+        <Navbar />
+      )}
+      <div className="relative min-h-screen bg-gray-100">{children}</div>
+    </div>
+  );
+}
+
+Layout.defaultProps = {
+  title: "",
+  description: "",
+  keywords: ``,
+};
