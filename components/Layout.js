@@ -4,8 +4,9 @@ import Footer from "./Footer";
 import Navbar from "./Navbar";
 export default function Layout({ title, keywords, description, children }) {
   const router = useRouter();
+  console.log(router.pathname);
   return (
-    <div className="">
+    <div className="w-screen">
       <Head>
         <title>{title}</title>
         <meta name="description" content={description} />
@@ -14,9 +15,9 @@ export default function Layout({ title, keywords, description, children }) {
       {router.pathname !== "/" && !router.pathname.includes("/login") && (
         <Navbar />
       )}
-      <div className="relative min-h-screen bg-gray-100">
+      <div className="relative min-h-screen bg-gray-100 ">
         {children}
-        <Footer />
+        {router.pathname === "/" && <Footer />}
       </div>
     </div>
   );

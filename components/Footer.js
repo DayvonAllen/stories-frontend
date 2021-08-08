@@ -48,8 +48,8 @@ const navigationFooter = {
 };
 export default function Footer() {
   return (
-    <footer className="bg-white border-t border-gray-300 w-full mx-auto">
-      <div className="max-w-7xl mx-auto py-12 px-4 overflow-hidden sm:px-6 lg:px-8">
+    <footer className="bg-white  w-screen">
+      <div className="  w-1/2 border-t border-gray-300 max-w-7xl mx-auto py-12 px-4 overflow-hidden sm:px-6 lg:px-8 sm:w-screen">
         <nav
           className="-mx-5 -my-2 flex flex-wrap justify-center"
           aria-label="Footer"
