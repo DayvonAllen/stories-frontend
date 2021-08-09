@@ -4,6 +4,7 @@ import router, { withRouter } from "next/router";
 import draftToHtml from "draftjs-to-html";
 import DOMPurify from "dompurify";
 import { APP_URL } from "../config";
+import Menu from "@/components/Menu";
 
 class Write extends Component {
   constructor(props) {
@@ -11,6 +12,7 @@ class Write extends Component {
     this.state = {
       title: "",
       body: "",
+      category: {},
     };
 
     this.handleInputs = this.handleInputs.bind(this);
@@ -27,6 +29,12 @@ class Write extends Component {
     this.setState({
       body: content,
       articleUpdated: true,
+    });
+  };
+
+  handleCategory = (category) => {
+    this.setState({
+      category,
     });
   };
 
@@ -49,6 +57,8 @@ class Write extends Component {
 
     await res.json();
 
+    console.log(this.state.category);
+
     router.push("/home");
   };
 
@@ -65,7 +75,7 @@ class Write extends Component {
               type="text"
             />
           </div>
-
+          <Menu handleCategory={this.handleCategory} />
           <div className="mt-4 sm:mt-0 sm:col-span-2 bg-white">
             <TextEditor handleContent={this.handleEditorContent} />
           </div>
