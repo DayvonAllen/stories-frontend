@@ -62,8 +62,6 @@ class Write extends Component {
       if (res.status === 400 || res.status === 500) {
         console.log("Error");
       } else {
-        console.log(this.state.category.name.toLowerCase());
-
         router.push("/home");
       }
     } catch (e) {

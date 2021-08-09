@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { EditorState } from "draft-js";
 import dynamic from "next/dynamic";
-import { convertFromRaw, convertToRaw } from "draft-js";
+import { convertToRaw } from "draft-js";
 const Editor = dynamic(
   () => import("react-draft-wysiwyg").then((mod) => mod.Editor),
   { ssr: false }
