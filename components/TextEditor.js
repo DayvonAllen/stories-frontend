@@ -39,7 +39,7 @@ export default class TextEditor extends Component {
             "inline",
             "blockType",
             "fontSize",
-            "textAlign",
+            // "textAlign",
             // "colorPicker",
             // "link",
             // "embedded",

@@ -83,7 +83,7 @@ class Write extends Component {
             />
           </div>
           <Menu handleCategory={this.handleCategory} />
-          <div className="mt-4 sm:mt-0 sm:col-span-2 bg-white">
+          <div className="mt-4 sm:mt-0 sm:col-span-2 bg-white px-2">
             <TextEditor handleContent={this.handleEditorContent} />
           </div>
         </div>
