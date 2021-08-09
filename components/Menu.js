@@ -1,23 +1,14 @@
 import { Fragment, useEffect, useState } from "react";
 import { Listbox, Transition } from "@headlessui/react";
 import { CheckIcon, SelectorIcon } from "@heroicons/react/solid";
-
-const categories = [
-  { id: 1, name: "Drama" },
-  { id: 2, name: "Creepy Pasta" },
-  { id: 3, name: "True Scary Story" },
-  { id: 4, name: "Suspense" },
-  { id: 5, name: "Romance" },
-  { id: 6, name: "Paranormal" },
-  { id: 7, name: "Ghost Story" },
-];
+import { CATEGORIES } from "../config";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
 export default function Menu({ handleCategory }) {
-  const [selected, setSelected] = useState(categories[3]);
+  const [selected, setSelected] = useState(CATEGORIES[0]);
 
   useEffect(() => {
     handleCategory(selected);
@@ -52,7 +43,7 @@ export default function Menu({ handleCategory }) {
                 static
                 className="absolute z-10 mt-1 w-full bg-white shadow-lg max-h-60 rounded-md py-1 text-base ring-1 ring-black ring-opacity-5 overflow-auto focus:outline-none sm:text-sm"
               >
-                {categories.map((person) => (
+                {CATEGORIES.map((person) => (
                   <Listbox.Option
                     key={person.id}
                     className={({ active }) =>
