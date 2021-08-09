@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import router, { withRouter } from "next/router";
 import draftToHtml from "draftjs-to-html";
 import DOMPurify from "dompurify";
-import { APP_URL } from "../config";
+import { APP_URL } from "../../config";
 import Menu from "@/components/Menu";
 
 class Write extends Component {

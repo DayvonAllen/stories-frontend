@@ -40,7 +40,7 @@ export default class TextEditor extends Component {
             "blockType",
             "fontSize",
             "textAlign",
-            "colorPicker",
+            // "colorPicker",
             // "link",
             // "embedded",
             "emoji",

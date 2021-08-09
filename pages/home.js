@@ -144,7 +144,7 @@ export default function Home({ stories, user }) {
                     <a>
                       <li
                         key={question.id}
-                        className="bg-white px-4 py-6 shadow sm:p-6 sm:rounded-lg"
+                        className="bg-white px-4 py-6 shadow sm:p-6 sm:rounded-lg mb-4"
                       >
                         <article
                           aria-labelledby={"question-title-" + question.id}

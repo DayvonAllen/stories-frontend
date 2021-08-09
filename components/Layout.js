@@ -18,7 +18,14 @@ export default function Layout({ title, keywords, description, children }) {
       {router.pathname !== "/" && !router.pathname.includes("/login") && (
         <Navbar user={user} logout={logout} />
       )}
-      <div className="relative min-h-screen bg-gray-100 ">
+      <div
+        className={`relative min-h-screen ${
+          router.pathname.includes("/stories/") &&
+          router.pathname !== "/stories/create"
+            ? "bg-white"
+            : "bg-gray-100"
+        }`}
+      >
         {React.cloneElement(children, { user })}
         {router.pathname === "/" && <Footer />}
       </div>
