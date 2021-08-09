@@ -24,7 +24,6 @@ class Write extends Component {
     });
   };
   handleEditorContent = (content) => {
-    console.log(content);
     this.setState({
       body: content,
       articleUpdated: true,

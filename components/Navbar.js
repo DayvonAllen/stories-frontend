@@ -11,24 +11,24 @@ import {
 } from "@heroicons/react/outline";
 import Link from "next/link";
 
-const currentUser = {
-  name: "Chelsea Hagon",
-  email: "chelseahagon@example.com",
-  imageUrl:
-    "https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
-};
-
-const navigation = [
-  { name: "Home", href: "#", icon: HomeIcon, current: true },
-  { name: "Categories", href: "#", icon: CollectionIcon, current: false },
-  { name: "Saved Stories", href: "#", icon: ArchiveIcon, current: false },
-];
-
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
 export default function Navbar({ user, logout }) {
+  const currentUser = {
+    name: "Chelsea Hagon",
+    email: "chelseahagon@example.com",
+    imageUrl:
+      "https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
+  };
+
+  const navigation = [
+    { name: "Home", href: "#", icon: HomeIcon, current: true },
+    { name: "Categories", href: "#", icon: CollectionIcon, current: false },
+    { name: "Saved Stories", href: "#", icon: ArchiveIcon, current: false },
+  ];
+
   const userNavigation = [
     { name: "Home", href: "/home", callback: undefined },
     { name: "Your Profile", href: "#", callback: undefined },
@@ -137,13 +137,15 @@ export default function Navbar({ user, logout }) {
                             {userNavigation.map((item) => (
                               <Menu.Item key={item.name}>
                                 {({ active }) => (
-                                  <Link href={item.href}>
+                                  <Link
+                                    href={item.href}
+                                    onClick={item?.callback}
+                                  >
                                     <a
                                       className={classNames(
                                         active ? "bg-green-500" : "",
                                         "block py-2 px-4 text-sm text-white"
                                       )}
-                                      onClick={item?.callback}
                                     >
                                       {item.name}
                                     </a>
