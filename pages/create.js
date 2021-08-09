@@ -12,7 +12,7 @@ class Write extends Component {
     this.state = {
       title: "",
       body: "",
-      category: {},
+      category: "",
     };
 
     this.handleInputs = this.handleInputs.bind(this);
@@ -44,22 +44,31 @@ class Write extends Component {
     let title = DOMPurify.sanitize(this.state.title);
     body = DOMPurify.sanitize(body);
 
-    const res = await fetch(`${APP_URL}/api/createStory`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        title,
-        content: body,
-      }),
-    });
+    try {
+      const res = await fetch(`${APP_URL}/api/createStory`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          title,
+          content: body,
+          category: this.state.category.name.toLowerCase(),
+        }),
+      });
 
-    await res.json();
+      await res.json();
 
-    console.log(this.state.category);
+      if (res.status === 400 || res.status === 500) {
+        console.log("Error");
+      } else {
+        console.log(this.state.category.name.toLowerCase());
 
-    router.push("/home");
+        router.push("/home");
+      }
+    } catch (e) {
+      console.log("Error");
+    }
   };
 
   render() {

@@ -4,7 +4,7 @@ import { CheckIcon, SelectorIcon } from "@heroicons/react/solid";
 
 const categories = [
   { id: 1, name: "Drama" },
-  { id: 2, name: "CreepyPasta" },
+  { id: 2, name: "Creepy Pasta" },
   { id: 3, name: "True Scary Story" },
   { id: 4, name: "Suspense" },
   { id: 5, name: "Romance" },

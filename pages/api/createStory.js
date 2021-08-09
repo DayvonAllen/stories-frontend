@@ -2,7 +2,7 @@ import { API_URL } from "@/config/index";
 import cookie from "cookie";
 export default async (req, res) => {
   if (req.method === "POST") {
-    const { title, content } = req.body;
+    const { title, content, category } = req.body;
 
     const { token } = cookie.parse(req.headers.cookie);
 
@@ -15,11 +15,9 @@ export default async (req, res) => {
       body: JSON.stringify({
         title,
         content,
-        tags: [
-          {
-            value: "TrueScaryStory",
-          },
-        ],
+        tag: {
+          value: category,
+        },
       }),
     });
 
