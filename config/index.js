@@ -15,4 +15,5 @@ export const CATEGORIES = [
   { id: 5, name: "Romance" },
   { id: 6, name: "Paranormal" },
   { id: 7, name: "Ghost Story" },
+  { id: 8, name: "Other" },
 ];

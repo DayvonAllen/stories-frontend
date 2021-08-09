@@ -277,7 +277,7 @@ export default function LandingPage({ stories }) {
                         "inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium"
                       )}
                     >
-                      {post.tags[0].value}
+                      {post.tag.value}
                     </span>
                   </a>
                 </div>
