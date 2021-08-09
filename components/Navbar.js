@@ -137,15 +137,13 @@ export default function Navbar({ user, logout }) {
                             {userNavigation.map((item) => (
                               <Menu.Item key={item.name}>
                                 {({ active }) => (
-                                  <Link
-                                    href={item.href}
-                                    onClick={item?.callback}
-                                  >
+                                  <Link href={item.href}>
                                     <a
                                       className={classNames(
                                         active ? "bg-green-500" : "",
                                         "block py-2 px-4 text-sm text-white"
                                       )}
+                                      onClick={item?.callback}
                                     >
                                       {item.name}
                                     </a>
@@ -216,12 +214,11 @@ export default function Navbar({ user, logout }) {
                 </div>
                 <div className="mt-3 max-w-3xl mx-auto px-2 space-y-1 sm:px-4">
                   {userNavigation.map((item) => (
-                    <Link
-                      key={item.name}
-                      href={item.href}
-                      onClick={item?.callback}
-                    >
-                      <a className="block rounded-md py-2 px-3 text-base font-medium text-white hover:bg-gray-50 hover:text-gray-900">
+                    <Link key={item.name} href={item.href}>
+                      <a
+                        onClick={item?.callback}
+                        className="block rounded-md py-2 px-3 text-base font-medium text-white hover:bg-gray-50 hover:text-gray-900"
+                      >
                         {item.name}
                       </a>
                     </Link>
