@@ -38,7 +38,7 @@ export default class TextEditor extends Component {
           options: [
             "inline",
             "blockType",
-            "fontSize",
+            // "fontSize",
             // "textAlign",
             // "colorPicker",
             // "link",
@@ -46,11 +46,11 @@ export default class TextEditor extends Component {
             "emoji",
             // "history",
           ],
-          inline: { inDropdown: true },
-          list: { inDropdown: true },
-          textAlign: { inDropdown: true },
-          link: { inDropdown: true },
-          history: { inDropdown: true },
+          // inline: { inDropdown: true },
+          // list: { inDropdown: true },
+          // textAlign: { inDropdown: true },
+          // link: { inDropdown: true },
+          // history: { inDropdown: true },
         }}
       />
     );
