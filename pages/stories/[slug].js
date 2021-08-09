@@ -2,8 +2,8 @@ import { API_URL } from "@/config/index";
 import DOMPurify from "isomorphic-dompurify";
 import cookie from "cookie";
 
-export default function Story({ story }) {
-  return (
+export default function Story({ story, user }) {
+  return user ? (
     <div className="md:w-1/2 mx-auto w-screen">
       <div className="relative py-16 bg-white sm:overflow-hidden overflow-auto">
         <div className="hidden lg:block lg:absolute lg:inset-y-0 lg:h-full lg:w-full"></div>
@@ -25,7 +25,7 @@ export default function Story({ story }) {
         </div>
       </div>
     </div>
-  );
+  ) : null;
 }
 
 export async function getServerSideProps({ req, query }) {
