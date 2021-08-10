@@ -17,6 +17,10 @@ import {
   ArchiveIcon,
   CollectionIcon,
 } from "@heroicons/react/outline";
+import {
+  ArrowNarrowLeftIcon,
+  ArrowNarrowRightIcon,
+} from "@heroicons/react/solid";
 import { API_URL } from "../config/index";
 import DOMPurify from "dompurify";
 import Link from "next/link";
@@ -47,7 +51,16 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function Home({ stories, user }) {
+export default function Home({
+  stories,
+  user,
+  numberOfPages,
+  currentPage,
+  numberOfStories,
+}) {
+  const pageCounter = new Array(numberOfPages);
+  pageCounter.fill(0);
+
   return user ? (
     <div className="relative min-h-screen bg-gray-100">
       {/* When the mobile menu is open, add `overflow-hidden` to the `body` element to prevent double scrollbars */}
@@ -335,6 +348,46 @@ export default function Home({ stories, user }) {
                 ))}
               </ul>
             </div>
+            <nav className="border-t border-gray-200 px-4 flex items-center justify-between sm:px-0">
+              <div className="-mt-px w-0 flex-1 flex">
+                <a
+                  href="#"
+                  className="border-t-2 border-transparent pt-4 pr-1 inline-flex items-center text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300"
+                >
+                  <ArrowNarrowLeftIcon
+                    className="mr-3 h-5 w-5 text-gray-400"
+                    aria-hidden="true"
+                  />
+                  Previous
+                </a>
+              </div>
+              <div className="hidden md:-mt-px md:flex">
+                {pageCounter.map((pageCounter, i) => (
+                  <a
+                    href="#"
+                    className={
+                      i + 1 === currentPage
+                        ? "border-green-500 text-green-600 border-t-2 pt-4 px-4 inline-flex items-center text-sm font-medium"
+                        : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 border-t-2 pt-4 px-4 inline-flex items-center text-sm font-medium"
+                    }
+                  >
+                    {i + 1}
+                  </a>
+                ))}
+              </div>
+              <div className="-mt-px w-0 flex-1 flex justify-end">
+                <a
+                  href="#"
+                  className="border-t-2 border-transparent pt-4 pl-1 inline-flex items-center text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300"
+                >
+                  Next
+                  <ArrowNarrowRightIcon
+                    className="ml-3 h-5 w-5 text-gray-400"
+                    aria-hidden="true"
+                  />
+                </a>
+              </div>
+            </nav>
           </main>
           <aside className="hidden xl:block xl:col-span-4">
             <div className="sticky top-4 space-y-4">
@@ -417,6 +470,9 @@ export async function getServerSideProps({ req }) {
   return {
     props: {
       stories: data?.data?.stories || [],
+      numberOfStories: data?.data?.numberOfStories,
+      currentPage: data?.data?.currentPage,
+      numberOfPages: data?.data?.numberOfPages,
     },
   };
 }
