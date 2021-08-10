@@ -32,7 +32,7 @@ export default function Navbar({ user, logout }) {
   const userNavigation = [
     { name: "Home", href: "/home", callback: undefined },
     { name: "Your Profile", href: "#", callback: undefined },
-    { name: "Settings", href: "#", callback: undefined },
+    { name: "Settings", href: "/settings", callback: undefined },
     { name: "Sign out", href: "/home", callback: logout },
   ];
 

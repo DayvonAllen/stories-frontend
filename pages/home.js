@@ -327,7 +327,7 @@ export default function Home({
                                 </button>
                               </span>
                             </div>
-                            <div className="flex text-sm">
+                            {/* <div className="flex text-sm">
                               <span className="inline-flex items-center text-sm">
                                 <button className="inline-flex space-x-2 text-gray-400 hover:text-gray-500">
                                   <ShareIcon
@@ -339,7 +339,7 @@ export default function Home({
                                   </span>
                                 </button>
                               </span>
-                            </div>
+                            </div> */}
                           </div>
                         </article>
                       </li>
