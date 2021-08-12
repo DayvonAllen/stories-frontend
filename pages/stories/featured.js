@@ -42,8 +42,8 @@ const navigation = [
 ];
 
 const tabs = [
-  { name: "All Stories", href: "/home", current: true },
-  { name: "Featured Stories", href: "/stories/featured", current: false },
+  { name: "All Stories", href: "/home", current: false },
+  { name: "Featured Stories", href: "/stories/featured", current: true },
   { name: "Recent Stories", href: "/recent", current: false },
 ];
 
@@ -61,13 +61,7 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function Home({
-  stories,
-  user,
-  numberOfPages,
-  currentPage,
-  numberOfStories,
-}) {
+export default function Home({ stories, user, numberOfPages }) {
   const pageCounter = new Array(numberOfPages);
   pageCounter.fill(0);
 
@@ -374,49 +368,6 @@ export default function Home({
                 ))}
               </ul>
             </div>
-            <nav className="border-t border-gray-200 px-4 flex items-center justify-between sm:px-0">
-              <div className="-mt-px w-0 flex-1 flex">
-                {currentPage > 1 && (
-                  <Link href={`${APP_URL}/home/find/${currentPage - 1}`}>
-                    <a className="border-t-2 border-transparent pt-4 pr-1 inline-flex items-center text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300">
-                      <ArrowNarrowLeftIcon
-                        className="mr-3 h-5 w-5 text-gray-400"
-                        aria-hidden="true"
-                      />
-                      Previous
-                    </a>
-                  </Link>
-                )}
-              </div>
-              <div className="hidden md:-mt-px md:flex">
-                {pageCounter.map((pageCounter, i) => (
-                  <Link href={`${APP_URL}/home/find/${currentPage}`}>
-                    <a
-                      className={
-                        i + 1 === currentPage
-                          ? "border-green-500 text-green-600 border-t-2 pt-4 px-4 inline-flex items-center text-sm font-medium"
-                          : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 border-t-2 pt-4 px-4 inline-flex items-center text-sm font-medium"
-                      }
-                    >
-                      {i + 1}
-                    </a>
-                  </Link>
-                ))}
-              </div>
-              <div className="-mt-px w-0 flex-1 flex justify-end">
-                {numberOfPages > currentPage && (
-                  <Link href={`${APP_URL}/home/find/${currentPage + 1}`}>
-                    <a className="border-t-2 border-transparent pt-4 pl-1 inline-flex items-center text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300">
-                      Next
-                      <ArrowNarrowRightIcon
-                        className="ml-3 h-5 w-5 text-gray-400"
-                        aria-hidden="true"
-                      />
-                    </a>
-                  </Link>
-                )}
-              </div>
-            </nav>
           </main>
           <aside className="hidden xl:block xl:col-span-4">
             <div className="sticky top-4 space-y-4">
@@ -488,19 +439,17 @@ export default function Home({
 
 export async function getServerSideProps({ req }) {
   const { token } = cookie.parse(req?.headers?.cookie || "");
-  const res = await fetch(`${API_URL}/stories`, {
+  const res = await fetch(`${API_URL}/stories/featured`, {
     headers: {
       Authorization: token,
     },
   });
+
   const data = await res.json();
 
   return {
     props: {
-      stories: data?.data?.stories || [],
-      numberOfStories: data?.data?.numberOfStories,
-      currentPage: data?.data?.currentPage,
-      numberOfPages: data?.data?.numberOfPages,
+      stories: data?.data || [],
     },
   };
 }

@@ -41,8 +41,8 @@ const navigation = [
   },
 ];
 const tabs = [
-  { name: "All Stories", href: "/stories", current: true },
-  { name: "Featured Stories", href: "/featured", current: false },
+  { name: "All Stories", href: "/home", current: true },
+  { name: "Featured Stories", href: "/stories/featured", current: false },
   { name: "Recent Stories", href: "/recent", current: false },
 ];
 
