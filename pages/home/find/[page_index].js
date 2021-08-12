@@ -26,11 +26,20 @@ import DOMPurify from "dompurify";
 import Link from "next/link";
 
 const navigation = [
-  { name: "Home", href: "#", icon: HomeIcon, current: true },
-  { name: "Categories", href: "#", icon: CollectionIcon, current: false },
-  { name: "Saved Stories", href: "#", icon: ArchiveIcon, current: false },
+  { name: "Home", href: "/home", icon: HomeIcon, current: true },
+  {
+    name: "Categories",
+    href: "/categories",
+    icon: CollectionIcon,
+    current: false,
+  },
+  {
+    name: "Saved Stories",
+    href: "/savedStories",
+    icon: ArchiveIcon,
+    current: false,
+  },
 ];
-
 const tabs = [
   { name: "All Stories", href: "/stories", current: true },
   { name: "Featured Stories", href: "/featured", current: false },
@@ -352,10 +361,7 @@ export default function HomePagination({
               <div className="-mt-px w-0 flex-1 flex">
                 {currentPage > 1 && (
                   <Link href={`${APP_URL}/home/find/${currentPage - 1}`}>
-                    <a
-                      href="#"
-                      className="border-t-2 border-transparent pt-4 pr-1 inline-flex items-center text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300"
-                    >
+                    <a className="border-t-2 border-transparent pt-4 pr-1 inline-flex items-center text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300">
                       <ArrowNarrowLeftIcon
                         className="mr-3 h-5 w-5 text-gray-400"
                         aria-hidden="true"
@@ -383,10 +389,7 @@ export default function HomePagination({
               <div className="-mt-px w-0 flex-1 flex justify-end">
                 {numberOfPages > currentPage && (
                   <Link href={`${APP_URL}/home/find/${currentPage + 1}`}>
-                    <a
-                      href="#"
-                      className="border-t-2 border-transparent pt-4 pl-1 inline-flex items-center text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300"
-                    >
+                    <a className="border-t-2 border-transparent pt-4 pl-1 inline-flex items-center text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300">
                       Next
                       <ArrowNarrowRightIcon
                         className="ml-3 h-5 w-5 text-gray-400"

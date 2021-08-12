@@ -26,7 +26,7 @@ import DOMPurify from "dompurify";
 import Link from "next/link";
 
 const navigation = [
-  { name: "Home", href: "/home", icon: HomeIcon, current: true },
+  { name: "Home", href: "/home", icon: HomeIcon, current: false },
   {
     name: "Categories",
     href: "/categories",
@@ -37,31 +37,31 @@ const navigation = [
     name: "Saved Stories",
     href: "/savedStories",
     icon: ArchiveIcon,
-    current: false,
+    current: true,
   },
 ];
 
 const tabs = [
-  { name: "All Stories", href: "/stories", current: true },
-  { name: "Featured Stories", href: "/featured", current: false },
-  { name: "Recent Stories", href: "/recent", current: false },
+  { name: "All Saved Stories", href: "/stories", current: true },
+  // { name: "Featured Stories", href: "/featured", current: false },
+  // { name: "Recent Stories", href: "/recent", current: false },
 ];
 
-const whoToFollow = [
-  {
-    name: "Leonard Krasner",
-    handle: "leonardkrasner",
-    href: "#",
-    imageUrl:
-      "https://images.unsplash.com/photo-1519345182560-3f2917c472ef?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
-  },
-];
+// const whoToFollow = [
+//   {
+//     name: "Leonard Krasner",
+//     handle: "leonardkrasner",
+//     href: "#",
+//     imageUrl:
+//       "https://images.unsplash.com/photo-1519345182560-3f2917c472ef?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
+//   },
+// ];
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function Home({
+export default function SavedStories({
   stories,
   user,
   numberOfPages,
@@ -163,14 +163,16 @@ export default function Home({
               <h1 className="sr-only">Recent questions</h1>
               <ul className="space-y-4">
                 {stories?.map((question) => (
-                  <Link href={`/stories/${question.id}`}>
+                  <Link href={`/stories/${question.story.id}`}>
                     <a>
                       <li
-                        key={question.id}
+                        key={question.story.id}
                         className="bg-white px-4 py-6 shadow sm:p-6 sm:rounded-lg mb-4"
                       >
                         <article
-                          aria-labelledby={"question-title-" + question.id}
+                          aria-labelledby={
+                            "question-title-" + question.story.id
+                          }
                         >
                           <div>
                             <div className="flex space-x-3">
@@ -187,7 +189,7 @@ export default function Home({
                                     // href={question.author.href}
                                     className="hover:underline"
                                   >
-                                    {question.authorUsername}
+                                    {question.story.authorUsername}
                                   </a>
                                 </p>
                                 <p className="text-sm text-gray-500">
@@ -197,10 +199,12 @@ export default function Home({
                                   >
                                     <time
                                       dateTime={moment(
-                                        question.createdAt
+                                        question.story.createdAt
                                       ).format("LL")}
                                     >
-                                      {moment(question.createdAt).format("LL")}
+                                      {moment(question.story.createdAt).format(
+                                        "LL"
+                                      )}
                                     </time>
                                   </a>
                                 </p>
@@ -289,13 +293,15 @@ export default function Home({
                               id={"question-title-" + question.id}
                               className="mt-4 text-base font-medium text-gray-900"
                             >
-                              {question.title}
+                              {question.story.title}
                             </h2>
                           </div>
                           <div
                             className="mt-2 text-sm text-gray-700 space-y-4"
                             dangerouslySetInnerHTML={{
-                              __html: DOMPurify.sanitize(question.preview),
+                              __html: DOMPurify.sanitize(
+                                question.story.preview
+                              ),
                             }}
                           />
                           <div className="mt-6 flex justify-between space-x-8">
@@ -307,7 +313,7 @@ export default function Home({
                                     aria-hidden="true"
                                   />
                                   <span className="font-medium text-gray-900">
-                                    {question.likes}
+                                    {question.story.likes}
                                   </span>
                                   <span className="sr-only">likes</span>
                                 </button>
@@ -319,7 +325,7 @@ export default function Home({
                                     aria-hidden="true"
                                   />
                                   <span className="font-medium text-gray-900">
-                                    {question.commentCount}
+                                    {question.story.comment?.length || 0}
                                   </span>
                                   <span className="sr-only">Comments</span>
                                 </button>
@@ -403,7 +409,7 @@ export default function Home({
             </nav>
           </main>
           <aside className="hidden xl:block xl:col-span-4">
-            <div className="sticky top-4 space-y-4">
+            {/* <div className="sticky top-4 space-y-4">
               <section aria-labelledby="who-to-follow-heading">
                 <div className="bg-white rounded-lg shadow">
                   <div className="p-6">
@@ -462,7 +468,7 @@ export default function Home({
                   </div>
                 </div>
               </section>
-            </div>
+            </div> */}
           </aside>
         </div>
       </div>
@@ -472,17 +478,17 @@ export default function Home({
 
 export async function getServerSideProps({ req }) {
   const { token } = cookie.parse(req?.headers?.cookie || "");
-  const res = await fetch(`${API_URL}/stories`, {
+  const res = await fetch(`${API_URL}/read`, {
     headers: {
       Authorization: token,
     },
   });
   const data = await res.json();
 
-  console.log(data);
+  console.log(data?.data?.readLaterItems);
   return {
     props: {
-      stories: data?.data?.stories || [],
+      stories: data?.data?.readLaterItems || [],
       numberOfStories: data?.data?.numberOfStories,
       currentPage: data?.data?.currentPage,
       numberOfPages: data?.data?.numberOfPages,
