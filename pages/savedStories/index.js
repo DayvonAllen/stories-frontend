@@ -11,6 +11,7 @@ import {
   ShareIcon,
   StarIcon,
   ThumbUpIcon,
+  TrashIcon,
 } from "@heroicons/react/solid";
 import {
   HomeIcon,
@@ -42,7 +43,7 @@ const navigation = [
 ];
 
 const tabs = [
-  { name: "All Saved Stories", href: "/stories", current: true },
+  { name: "All Saved Stories", current: true },
   // { name: "Featured Stories", href: "/featured", current: false },
   // { name: "Recent Stories", href: "/recent", current: false },
 ];
@@ -135,7 +136,6 @@ export default function SavedStories({
                   {tabs.map((tab, tabIdx) => (
                     <a
                       key={tab.name}
-                      href={tab.href}
                       aria-current={tab.current ? "page" : undefined}
                       className={classNames(
                         tab.current
@@ -259,6 +259,25 @@ export default function SavedStories({
                                                     aria-hidden="true"
                                                   />
                                                   <span>Save story</span>
+                                                </a>
+                                              )}
+                                            </Menu.Item>
+                                            <Menu.Item>
+                                              {({ active }) => (
+                                                <a
+                                                  href="#"
+                                                  className={classNames(
+                                                    active
+                                                      ? "bg-gray-100 text-gray-900"
+                                                      : "text-gray-700",
+                                                    "flex px-4 py-2 text-sm"
+                                                  )}
+                                                >
+                                                  <TrashIcon
+                                                    className="mr-3 h-5 w-5 text-gray-400"
+                                                    aria-hidden="true"
+                                                  />
+                                                  <span>Remove story</span>
                                                 </a>
                                               )}
                                             </Menu.Item>

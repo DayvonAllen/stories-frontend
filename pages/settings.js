@@ -18,12 +18,8 @@ const user = {
 };
 
 const subNavigation = [
-  { name: "Profile", href: "#", icon: UserCircleIcon, current: false },
   { name: "Account", href: "#", icon: CogIcon, current: false },
-  { name: "Password", href: "#", icon: KeyIcon, current: false },
-  { name: "Notifications", href: "#", icon: BellIcon, current: false },
-  { name: "Plan & Billing", href: "#", icon: CreditCardIcon, current: true },
-  { name: "Integrations", href: "#", icon: ViewGridAddIcon, current: false },
+  { name: "Notifications", href: "#", icon: BellIcon, current: true },
 ];
 const plans = [
   {
