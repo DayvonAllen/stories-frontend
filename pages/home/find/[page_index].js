@@ -480,7 +480,6 @@ export async function getServerSideProps({ req, query }) {
 
   const data = await res.json();
 
-  console.log(data);
   return {
     props: {
       stories: data?.data?.stories || [],
