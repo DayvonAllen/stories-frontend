@@ -502,7 +502,6 @@ export async function getServerSideProps({ req }) {
   });
   const data = await res.json();
 
-  console.log(data?.data?.readLaterItems);
   return {
     props: {
       stories: data?.data?.readLaterItems || [],
