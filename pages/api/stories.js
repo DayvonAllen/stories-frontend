@@ -11,11 +11,7 @@ export default async (req, res) => {
       },
     });
 
-    console.log(stories);
-
     const stories = await backendRes.json();
-
-    console.log(stories);
 
     if (backendRes.ok) {
       res.status(200).json({ stories: stories?.data });

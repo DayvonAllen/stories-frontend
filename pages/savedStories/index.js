@@ -7,8 +7,6 @@ import {
   DotsVerticalIcon,
   EyeIcon,
   FlagIcon,
-  PlusIcon,
-  ShareIcon,
   StarIcon,
   ThumbUpIcon,
   TrashIcon,
