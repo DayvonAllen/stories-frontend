@@ -1,4 +1,4 @@
-import { Fragment, useContext } from "react";
+import { Fragment } from "react";
 import moment from "moment";
 import { Menu, Transition } from "@headlessui/react";
 import cookie from "cookie";
@@ -8,7 +8,6 @@ import {
   EyeIcon,
   FlagIcon,
   PlusIcon,
-  ShareIcon,
   StarIcon,
   ThumbUpIcon,
 } from "@heroicons/react/solid";
@@ -17,10 +16,6 @@ import {
   ArchiveIcon,
   CollectionIcon,
 } from "@heroicons/react/outline";
-import {
-  ArrowNarrowLeftIcon,
-  ArrowNarrowRightIcon,
-} from "@heroicons/react/solid";
 import { API_URL, APP_URL } from "@/config/index";
 import DOMPurify from "dompurify";
 import Link from "next/link";
@@ -44,7 +39,7 @@ const navigation = [
 const tabs = [
   { name: "All Stories", href: "/home", current: false },
   { name: "Featured Stories", href: "/stories/featured", current: true },
-  { name: "Recent Stories", href: "/recent", current: false },
+  { name: "Recent Stories", href: "/stories/recent", current: false },
 ];
 
 const whoToFollow = [

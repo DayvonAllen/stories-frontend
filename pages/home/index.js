@@ -44,7 +44,7 @@ const navigation = [
 const tabs = [
   { name: "All Stories", href: "/home", current: true },
   { name: "Featured Stories", href: "/stories/featured", current: false },
-  { name: "Recent Stories", href: "/recent", current: false },
+  { name: "Recent Stories", href: "/stories/recent", current: false },
 ];
 
 const whoToFollow = [
@@ -494,8 +494,6 @@ export async function getServerSideProps({ req }) {
     },
   });
   const data = await res.json();
-
-  console.log(data?.data?.stories);
 
   return {
     props: {
