@@ -342,7 +342,7 @@ export default function Home({ stories, user, numberOfPages }) {
                                   aria-hidden="true"
                                 />
                                 <span className="font-medium text-gray-900">
-                                  {/* {question.views} */}1
+                                  {question.views}
                                 </span>
                                 <span className="sr-only">views</span>
                               </button>
