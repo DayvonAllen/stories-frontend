@@ -161,18 +161,18 @@ export default function Home({ stories, user, numberOfPages }) {
             <div className="mt-4">
               <h1 className="sr-only">Recent questions</h1>
               <ul className="space-y-4">
-                {stories?.map((question) => (
+                {stories?.map((storyObject) => (
                   <a>
                     <li
-                      key={question.id}
+                      key={storyObject.id}
                       className="bg-white px-4 py-6 shadow sm:p-6 sm:rounded-lg mb-4"
                     >
                       <article
-                        aria-labelledby={"question-title-" + question.id}
+                        aria-labelledby={"question-title-" + storyObject.id}
                       >
                         <div>
                           <div className="flex space-x-3">
-                            <Link href={`/stories/${question.id}`}>
+                            <Link href={`/stories/${storyObject.id}`}>
                               <div className="flex-shrink-0">
                                 <img
                                   className="h-10 w-10 rounded-full"
@@ -182,14 +182,14 @@ export default function Home({ stories, user, numberOfPages }) {
                               </div>
                             </Link>
 
-                            <Link href={`/stories/${question.id}`}>
+                            <Link href={`/stories/${storyObject.id}`}>
                               <div className="min-w-0 flex-1">
                                 <p className="text-sm font-medium text-gray-900">
                                   <a
                                     // href={question.author.href}
                                     className="hover:underline"
                                   >
-                                    {question.authorUsername}
+                                    {storyObject.authorUsername}
                                   </a>
                                 </p>
                                 <p className="text-sm text-gray-500">
@@ -199,10 +199,12 @@ export default function Home({ stories, user, numberOfPages }) {
                                   >
                                     <time
                                       dateTime={moment(
-                                        question.createdAt
+                                        storyObject.createdAt
                                       ).format("LL")}
                                     >
-                                      {moment(question.createdAt).format("LL")}
+                                      {moment(storyObject.createdAt).format(
+                                        "LL"
+                                      )}
                                     </time>
                                   </a>
                                 </p>
@@ -253,7 +255,7 @@ export default function Home({ stories, user, numberOfPages }) {
                                                   "flex px-4 py-2 text-sm"
                                                 )}
                                                 onClick={() =>
-                                                  saveStory(question.id)
+                                                  saveStory(storyObject.id)
                                                 }
                                               >
                                                 <StarIcon
@@ -292,16 +294,16 @@ export default function Home({ stories, user, numberOfPages }) {
                             </div>
                           </div>
                           <h2
-                            id={"question-title-" + question.id}
+                            id={"question-title-" + storyObject.id}
                             className="mt-4 text-base font-medium text-gray-900"
                           >
-                            {question.title}
+                            {storyObject.title}
                           </h2>
                         </div>
                         <div
                           className="mt-2 text-sm text-gray-700 space-y-4"
                           dangerouslySetInnerHTML={{
-                            __html: DOMPurify.sanitize(question.preview),
+                            __html: DOMPurify.sanitize(storyObject.preview),
                           }}
                         />
                         <div className="mt-6 flex justify-between space-x-8">
@@ -313,7 +315,7 @@ export default function Home({ stories, user, numberOfPages }) {
                                   aria-hidden="true"
                                 />
                                 <span className="font-medium text-gray-900">
-                                  {question.likes}
+                                  {storyObject.likes}
                                 </span>
                                 <span className="sr-only">likes</span>
                               </button>
@@ -325,7 +327,7 @@ export default function Home({ stories, user, numberOfPages }) {
                                   aria-hidden="true"
                                 />
                                 <span className="font-medium text-gray-900">
-                                  {question.commentCount}
+                                  {storyObject.commentCount}
                                 </span>
                                 <span className="sr-only">Comments</span>
                               </button>
@@ -337,7 +339,7 @@ export default function Home({ stories, user, numberOfPages }) {
                                   aria-hidden="true"
                                 />
                                 <span className="font-medium text-gray-900">
-                                  {question.views}
+                                  {storyObject.views}
                                 </span>
                                 <span className="sr-only">views</span>
                               </button>

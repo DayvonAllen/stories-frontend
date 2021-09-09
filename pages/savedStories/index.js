@@ -160,16 +160,16 @@ export default function SavedStories({
             <div className="mt-4">
               <h1 className="sr-only">Recent questions</h1>
               <ul className="space-y-4">
-                {stories?.map((question) => (
-                  <Link href={`/stories/${question.story.id}`}>
+                {stories?.map((storyObject) => (
+                  <Link href={`/stories/${storyObject.story.id}`}>
                     <a>
                       <li
-                        key={question.story.id}
+                        key={storyObject.story.id}
                         className="bg-white px-4 py-6 shadow sm:p-6 sm:rounded-lg mb-4"
                       >
                         <article
                           aria-labelledby={
-                            "question-title-" + question.story.id
+                            "question-title-" + storyObject.story.id
                           }
                         >
                           <div>
@@ -187,7 +187,7 @@ export default function SavedStories({
                                     // href={question.author.href}
                                     className="hover:underline"
                                   >
-                                    {question.story.authorUsername}
+                                    {storyObject.story.authorUsername}
                                   </a>
                                 </p>
                                 <p className="text-sm text-gray-500">
@@ -197,12 +197,12 @@ export default function SavedStories({
                                   >
                                     <time
                                       dateTime={moment(
-                                        question.story.createdAt
+                                        storyObject.story.createdAt
                                       ).format("LL")}
                                     >
-                                      {moment(question.story.createdAt).format(
-                                        "LL"
-                                      )}
+                                      {moment(
+                                        storyObject.story.createdAt
+                                      ).format("LL")}
                                     </time>
                                   </a>
                                 </p>
@@ -307,17 +307,17 @@ export default function SavedStories({
                               </div>
                             </div>
                             <h2
-                              id={"question-title-" + question.id}
+                              id={"question-title-" + storyObject.id}
                               className="mt-4 text-base font-medium text-gray-900"
                             >
-                              {question.story.title}
+                              {storyObject.story.title}
                             </h2>
                           </div>
                           <div
                             className="mt-2 text-sm text-gray-700 space-y-4"
                             dangerouslySetInnerHTML={{
                               __html: DOMPurify.sanitize(
-                                question.story.preview
+                                storyObject.story.preview
                               ),
                             }}
                           />
@@ -330,7 +330,7 @@ export default function SavedStories({
                                     aria-hidden="true"
                                   />
                                   <span className="font-medium text-gray-900">
-                                    {question.story.likes}
+                                    {storyObject.story.likes}
                                   </span>
                                   <span className="sr-only">likes</span>
                                 </button>
@@ -342,7 +342,7 @@ export default function SavedStories({
                                     aria-hidden="true"
                                   />
                                   <span className="font-medium text-gray-900">
-                                    {question.story.comment?.length || 0}
+                                    {storyObject.story.comment?.length || 0}
                                   </span>
                                   <span className="sr-only">Comments</span>
                                 </button>
@@ -354,7 +354,7 @@ export default function SavedStories({
                                     aria-hidden="true"
                                   />
                                   <span className="font-medium text-gray-900">
-                                    {question.story.views}
+                                    {storyObject.story.views}
                                   </span>
                                   <span className="sr-only">views</span>
                                 </button>

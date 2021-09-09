@@ -161,15 +161,15 @@ export default function HomePagination({
             <div className="mt-4">
               <h1 className="sr-only">Recent questions</h1>
               <ul className="space-y-4">
-                {stories?.map((question) => (
-                  <Link href={`/stories/${question.id}`}>
+                {stories?.map((storyObject) => (
+                  <Link href={`/stories/${storyObject.id}`}>
                     <a>
                       <li
-                        key={question.id}
+                        key={storyObject.id}
                         className="bg-white px-4 py-6 shadow sm:p-6 sm:rounded-lg mb-4"
                       >
                         <article
-                          aria-labelledby={"question-title-" + question.id}
+                          aria-labelledby={"question-title-" + storyObject.id}
                         >
                           <div>
                             <div className="flex space-x-3">
@@ -186,7 +186,7 @@ export default function HomePagination({
                                     // href={question.author.href}
                                     className="hover:underline"
                                   >
-                                    {question.authorUsername}
+                                    {storyObject.authorUsername}
                                   </a>
                                 </p>
                                 <p className="text-sm text-gray-500">
@@ -196,10 +196,12 @@ export default function HomePagination({
                                   >
                                     <time
                                       dateTime={moment(
-                                        question.createdAt
+                                        storyObject.createdAt
                                       ).format("LL")}
                                     >
-                                      {moment(question.createdAt).format("LL")}
+                                      {moment(storyObject.createdAt).format(
+                                        "LL"
+                                      )}
                                     </time>
                                   </a>
                                 </p>
@@ -285,16 +287,16 @@ export default function HomePagination({
                               </div>
                             </div>
                             <h2
-                              id={"question-title-" + question.id}
+                              id={"question-title-" + storyObject.id}
                               className="mt-4 text-base font-medium text-gray-900"
                             >
-                              {question.title}
+                              {storyObject.title}
                             </h2>
                           </div>
                           <div
                             className="mt-2 text-sm text-gray-700 space-y-4"
                             dangerouslySetInnerHTML={{
-                              __html: DOMPurify.sanitize(question.preview),
+                              __html: DOMPurify.sanitize(storyObject.preview),
                             }}
                           />
                           <div className="mt-6 flex justify-between space-x-8">
@@ -306,7 +308,7 @@ export default function HomePagination({
                                     aria-hidden="true"
                                   />
                                   <span className="font-medium text-gray-900">
-                                    {question.likes}
+                                    {storyObject.likes}
                                   </span>
                                   <span className="sr-only">likes</span>
                                 </button>
@@ -318,7 +320,7 @@ export default function HomePagination({
                                     aria-hidden="true"
                                   />
                                   <span className="font-medium text-gray-900">
-                                    {question.commentCount}
+                                    {storyObject.commentCount}
                                   </span>
                                   <span className="sr-only">Comments</span>
                                 </button>
@@ -330,7 +332,7 @@ export default function HomePagination({
                                     aria-hidden="true"
                                   />
                                   <span className="font-medium text-gray-900">
-                                    {question.views}
+                                    {storyObject.views}
                                   </span>
                                   <span className="sr-only">views</span>
                                 </button>
